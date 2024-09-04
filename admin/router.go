@@ -16,5 +16,5 @@ func InitRouter(g *gin.Engine) {
 	})
 
 	// hello world
-	adminGroup.GET("/say", handler.HelloHandler{}.GetHelloHandler)
+	adminGroup.GET("/say", handler.NewHelloHandler().GetHelloHandler)
 }

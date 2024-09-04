@@ -8,7 +8,11 @@ import (
 type HelloHandler struct {
 }
 
-func (h HelloHandler) GetHelloHandler(ctx *gin.Context) {
+func NewHelloHandler() *HelloHandler {
+	return &HelloHandler{}
+}
+
+func (h *HelloHandler) GetHelloHandler(ctx *gin.Context) {
 	info, err := service.Hello(ctx)
 	if err != nil {
 		ctx.JSON(400, gin.H{

@@ -1,6 +1,8 @@
 package app
 
 import (
+	"douya/app/handler"
+	"douya/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,4 +15,10 @@ func InitRouter(g *gin.Engine) {
 			"message": "ok",
 		})
 	})
+
+	// 获取token
+	appGroup.GET("/token", handler.NewTokenHandler().GenerateToken)
+
+	// 鉴权例子
+	appGroup.GET("/haha", utils.Handler(true), handler.NewTokenHandler().Haha)
 }
