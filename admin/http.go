@@ -2,9 +2,8 @@ package admin
 
 import (
 	"context"
-	"douya/admin/config"
-	"douya/admin/router"
-	"douya/pkg"
+	"douya/components"
+	"douya/config"
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -39,14 +38,14 @@ func GetServer() {
 	config.Init()
 
 	// 初始化路由
-	router.Init(g)
+	InitRouter(g)
 
 	// 初始化数据库
-	pkg.Init()
+	components.Init()
 
 	// 启动http服务
 	srv := &http.Server{
-		Addr:    ":8080",
+		Addr:    fmt.Sprintf(":%s", config.DefaultConfig.GinCfg.AdminPort),
 		Handler: g,
 	}
 
@@ -55,10 +54,9 @@ func GetServer() {
 		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Fatalf("listen: %s\n", err)
 		}
-
 	}()
 
-	log.Printf("douya admin start server at :8080 ...\n")
+	log.Printf("douya admin start server at :%s ...\n", config.DefaultConfig.GinCfg.AdminPort)
 
 	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
 	quit := make(chan os.Signal)

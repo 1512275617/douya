@@ -2,7 +2,7 @@ package main
 
 import (
 	"douya/admin"
-	"fmt"
+	"douya/app"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -14,7 +14,6 @@ func main() {
 		Use:   "admin",
 		Short: "admin server start cmd",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("admin server start")
 			admin.GetServer()
 		},
 	}
@@ -23,7 +22,7 @@ func main() {
 		Use:   "app",
 		Short: "app server start cmd",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("app server start")
+			app.GetServer()
 		},
 	}
 

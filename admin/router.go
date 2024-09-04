@@ -1,11 +1,11 @@
-package router
+package admin
 
 import (
 	"douya/admin/handler"
 	"github.com/gin-gonic/gin"
 )
 
-func Init(g *gin.Engine) {
+func InitRouter(g *gin.Engine) {
 	adminGroup := g.Group("/admin")
 
 	// 健康检查

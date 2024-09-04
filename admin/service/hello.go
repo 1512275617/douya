@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"douya/admin/dao"
+	"douya/dao"
 	"errors"
 	"github.com/go-redis/redis/v8"
 	"log"

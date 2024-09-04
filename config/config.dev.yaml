@@ -1,3 +1,8 @@
+#gin
+gin:
+  admin_port: 8080
+  app_port: 8081
+
 # mysql配置信息
 mysql:
   username: "root"

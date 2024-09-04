@@ -2,15 +2,15 @@ package dao
 
 import (
 	"context"
+	"douya/components"
 	"douya/consts"
 	"douya/model"
-	"douya/pkg"
 	"log"
 )
 
 func QueryHello() (string, error) {
 	var name string
-	db := pkg.GetMysqlClient(context.Background())
+	db := components.GetMysqlClient(context.Background())
 	err := db.Model(&model.User{}).Debug().Select("name").Scan(&name).Error
 	if err != nil {
 		log.Fatal(err)
@@ -20,7 +20,7 @@ func QueryHello() (string, error) {
 }
 
 func GetNameCache(ctx context.Context) (string, error) {
-	data, err := pkg.GetRedisClient(ctx).Get(ctx, consts.UserNameCacheKey).Result()
+	data, err := components.GetRedisClient(ctx).Get(ctx, consts.UserNameCacheKey).Result()
 	if err != nil {
 		return "", err
 	}
@@ -28,5 +28,5 @@ func GetNameCache(ctx context.Context) (string, error) {
 }
 
 func SetNameCache(ctx context.Context, name string) error {
-	return pkg.GetRedisClient(ctx).Set(ctx, consts.UserNameCacheKey, name, consts.UserNameCacheKeyExpireTime).Err()
+	return components.GetRedisClient(ctx).Set(ctx, consts.UserNameCacheKey, name, consts.UserNameCacheKeyExpireTime).Err()
 }

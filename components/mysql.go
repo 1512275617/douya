@@ -1,8 +1,8 @@
-package pkg
+package components
 
 import (
 	"context"
-	"douya/admin/config"
+	"douya/config"
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
