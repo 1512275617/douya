@@ -1,0 +1,17 @@
+# mysql配置信息
+mysql:
+  user: "root"
+  password: "root"
+  host: "127.0.0.1"
+  port: '3306'
+  db_name: "douya"
+
+# redis配置信息
+redis:
+  addr: 127.0.0.1:6379
+  read_timeout: 2
+  write_timeout: 2
+  username: ""
+  password: ""
+  db: 1
+  dial_timeout: 1
