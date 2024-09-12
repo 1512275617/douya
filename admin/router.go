@@ -3,10 +3,12 @@ package admin
 import (
 	"douya/admin/handler"
 	"douya/admin/service"
+	"douya/utils/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func InitRouter(g *gin.Engine) {
+	g.Use(cors.Cors())
 	adminGroup := g.Group("/admin")
 
 	// 健康检查
