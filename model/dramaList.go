@@ -1,8 +1,10 @@
-package entity
+package model
 
-import "time"
+import (
+	"time"
+)
 
-type DramaListResp struct {
+type DramaList struct {
 	Id         int       `gorm:"column:id;type:int(11);primary_key" json:"id"`
 	DramaTitle string    `gorm:"column:drama_title;type:varchar(255);comment:短剧名;NOT NULL" json:"drama_title"`
 	Picture    string    `gorm:"column:picture;type:varchar(255);comment:图片" json:"picture"`
@@ -10,4 +12,8 @@ type DramaListResp struct {
 	CreateTime time.Time `gorm:"column:create_time;type:datetime;comment:创建时间;NOT NULL" json:"create_time"`
 	UpdateTime time.Time `gorm:"column:update_time;type:datetime;comment:更新时间;NOT NULL" json:"update_time"`
 	Text       string    `gorm:"column:text;type:text;comment:简介" json:"text"`
+}
+
+func (m *DramaList) TableName() string {
+	return "drama_list"
 }
